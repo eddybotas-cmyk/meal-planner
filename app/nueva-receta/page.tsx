@@ -4,6 +4,8 @@ import { auth } from '@/lib/auth'
 import Link from 'next/link'
 import IngredientesForm from './IngredientesForm'
 
+export const dynamic = 'force-dynamic'
+
 async function guardarReceta(formData: FormData) {
   'use server'
 

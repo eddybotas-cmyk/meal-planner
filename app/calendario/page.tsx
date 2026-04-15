@@ -3,6 +3,8 @@ import { prisma } from '@/lib/prisma'
 import BotonRegresar from '@/components/BotonRegresar'
 import SelectAutoSave from './SelectAutoSave'
 
+export const dynamic = 'force-dynamic'
+
 // evita problemas de timezone
 function fechaSafe(fecha: string) {
   return new Date(fecha + 'T12:00:00')
