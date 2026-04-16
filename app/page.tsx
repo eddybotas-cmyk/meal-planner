@@ -73,7 +73,7 @@ export default function HomePage() {
             </button>
           </Link>
 
-          <form action="/api/logout" method="POST">
+          <form action="/api/auth/signout" method="POST">
             <button
               type="submit"
               style={{
