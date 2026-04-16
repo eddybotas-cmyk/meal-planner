@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/sqlite"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Usuario {
+  id_usuario   Int       @id @default(autoincrement())
+  nombre       String
+  email        String    @unique
+  password     String
+  rol          RolUsuario
+  creado       DateTime  @default(now())
+
+  recetas      Recetas[]
+}
+
+enum RolUsuario {
+  ADMIN
+  USUARIO
+}
+
+model Tipo {
+  id_tipo   Int       @id @default(autoincrement())
+  tipo      String
+
+  recetas   Recetas[]
+}
+
+model Recetas {
+  id_receta   Int            @id @default(autoincrement())
+  nombre      String
+  id_tipo     Int
+  id_usuario  Int
+
+  tipo        Tipo           @relation(fields: [id_tipo], references: [id_tipo])
+  usuario     Usuario        @relation(fields: [id_usuario], references: [id_usuario])
+
+  detalles    Detalle[]
+  tieneIng    TieneIng[]
+  planes      PlanComidas[]
+}
+
+model Detalle {
+  id_detalle Int      @id @default(autoincrement())
+  id_receta  Int
+  detalle    String
+
+  receta     Recetas  @relation(fields: [id_receta], references: [id_receta])
+}
+
+model Ingredientes {
+  id_ingrediente Int         @id @default(autoincrement())
+  nombre         String
+
+  recetas        TieneIng[]
+}
+
+model Unidades {
+  id_unidad Int         @id @default(autoincrement())
+  unidad    String
+
+  ingredientes TieneIng[]
+}
+
+model TieneIng {
+  id_tieneing    Int           @id @default(autoincrement())
+  id_receta      Int
+  id_ingrediente Int
+  cantidad       Float
+  id_unidad      Int
+
+  receta         Recetas       @relation(fields: [id_receta], references: [id_receta])
+  ingrediente    Ingredientes  @relation(fields: [id_ingrediente], references: [id_ingrediente])
+  unidad         Unidades      @relation(fields: [id_unidad], references: [id_unidad])
+}
+
+model PlanComidas {
+  id_plan    Int      @id @default(autoincrement())
+  fecha      DateTime
+  momento    String
+  id_receta  Int
+
+  @@unique([fecha, momento], name: "fecha_momento")
+  receta      Recetas @relation(fields: [id_receta], references: [id_receta])
+}

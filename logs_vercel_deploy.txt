@@ -1,0 +1,26 @@
+01:52:46.092 
+└ ƒ /unidades/[id]/editar
+01:52:46.092 
+01:52:46.092 
+01:52:46.093 
+ƒ Proxy (Middleware)
+01:52:46.093 
+01:52:46.093 
+○  (Static)   prerendered as static content
+01:52:46.093 
+ƒ  (Dynamic)  server-rendered on demand
+01:52:46.093 
+01:52:46.592 
+Build Completed in /vercel/output [18s]
+01:52:46.897 
+Deploying outputs...
+01:53:07.355 
+Deployment completed
+01:53:07.458 
+Creating build cache...
+01:53:26.623 
+Created build cache: 19s
+01:53:26.623 
+Uploading build cache [223.25 MB]
+01:53:29.723 
+Build cache uploaded: 3.103s
