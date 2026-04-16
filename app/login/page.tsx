@@ -1,4 +1,4 @@
-import { signIn } from '@/lib/auth'
+import { signIn } from 'next-auth/react'
 
 export const dynamic = 'force-dynamic'
 

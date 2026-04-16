@@ -1,6 +1,7 @@
 import { prisma } from '../../lib/prisma'
 import { redirect } from 'next/navigation'
-import { auth } from '@/lib/auth'
+import { getServerSession } from "next-auth"
+import authOptions from "@/lib/auth"
 import Link from 'next/link'
 import IngredientesForm from './IngredientesForm'
 
@@ -9,7 +10,7 @@ export const dynamic = 'force-dynamic'
 async function guardarReceta(formData: FormData) {
   'use server'
 
-  const session = await auth()
+  const session: any = await getServerSession(authOptions)
 
   const nombre = formData.get('nombre') as string
   const id_tipo = Number(formData.get('id_tipo'))
